@@ -1,12 +1,12 @@
 <?php
 
 session_start();
-include '../action/connect.php';
+include '../../action/connect.php';
 
 
 function base_url($link){
     $link = empty($link) ? "" : $link;
-    return "http://localhost/olshop_petshop/".$link;
+    return "http://localhost/kimi-petshop/".$link;
 }
 
 
@@ -30,14 +30,14 @@ if(empty($_SESSION)){
 	<title>Admin Dashboard</title>
 
 	<!-- Custom fonts for this template-->
-    <link href="<?= base_url('assets_admin/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url('assets/assets_admin/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="<?= base_url('assets_admin/') ?>css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets_admin/vendor/datatables/dataTables.bootstrap4.min.css') ?>">
+    <link href="<?= base_url('assets/assets_admin/') ?>css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/assets_admin/vendor/datatables/dataTables.bootstrap4.min.css') ?>">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
@@ -57,7 +57,7 @@ if(empty($_SESSION)){
 
         <!-- Sidebar -->
         <?php 
-        include('../view/admin/layout/sidebar.php');
+        include('../../view/admin/layout/sidebar.php');
         // $this->load->view('layout/admin/sidebar'); ?>
         <!-- End of Sidebar -->
 
@@ -69,7 +69,7 @@ if(empty($_SESSION)){
 
                 <!-- Topbar -->
                 <?php 
-                include('../view/admin/layout/topbar.php');
+                include('../../view/admin/layout/topbar.php');
                 // $this->load->view('layout/admin/topbar'); ?>
                 <!-- End of Topbar -->
 
@@ -77,10 +77,10 @@ if(empty($_SESSION)){
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Manage Gambar</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Manage Pesanan</h1>
                     </div>
 
-                    <form method="get" action="<?= $baseURL ?>admin/manage_pesanan.php" style="margin-bottom: 30px">
+                    <form method="get" action="<?= $baseURL ?>view/admin/manage_pesanan.php" style="margin-bottom: 30px">
                         <label>Cari berdasarkan tanggal</label>
                         <div class="input-group mb-3">      
                             <div class="input-group-prepend">
@@ -93,7 +93,7 @@ if(empty($_SESSION)){
 
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pending" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pending" role="tab" aria-controls="pills-home" aria-selected="true">Pending</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#sudahbayar" role="tab" aria-controls="pills-sudahbayar" aria-selected="false">Sudah Bayar</a>
@@ -112,7 +112,7 @@ if(empty($_SESSION)){
                         <div class="col mb-5">
                             <h1 style="color: black;">Pending</h1>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hovered">
+                                <table id="table-pending" class="table table-bordered table-striped table-hovered">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -122,7 +122,9 @@ if(empty($_SESSION)){
                                             <th>No Order</th>
                                             <th>Tanggal Pesan</th>
                                             <th>Status Bayar</th>
-                                            <th>Alamat Pengiriman</th>
+                                            <th>Penerima</th>
+                                            <th>No HP Penerima</th>
+                                            <th>Alamat Penerima</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -142,7 +144,7 @@ if(empty($_SESSION)){
                                         }
 
                                         $no=1;
-                                            $queryGetGambar = "select p.*,b.nama_barang,b.harga,g.gambar,u.nama as pembeli from tbl_pemesanan p inner join tbl_barang b on p.id_barang = b.id_barang inner join tbl_gambar g on b.id_barang = g.id_barang inner join tbl_users u on p.id_users = u.id_users $whereStatus group by p.id_barang order by no_order asc ";
+                                            $queryGetGambar = "select p.*,b.nama_barang,b.harga,g.gambar,u.nama as pembeli from tbl_pemesanan p inner join tbl_barang b on p.id_barang = b.id_barang inner join tbl_gambar g on b.id_barang = g.id_barang inner join tbl_users u on p.id_users = u.id_users $whereStatus $whereSearch group by p.id_barang order by no_order asc ";
                                             // echo "<pre>";print_r($queryGetGambar);
                                             $result = mysqli_query($conn,$queryGetGambar);
                                             $arr = [];
@@ -186,7 +188,9 @@ if(empty($_SESSION)){
                                                  ?>
                                                     <span class="labelstatus<?=$row['no_order']?> badge badge-<?=$badge?>"><?=$status?></span></h2>
                                                 </td>
-                                            <td><?= $row['alamat_pengiriman'] ?></td>
+                                            <td><?= $row['penerima'] ?></td>
+                                            <td><?= $row['no_hp_penerima'] ?></td>
+                                            <td><?= $row['kota_penerima']." , ".$row['alamat_pengiriman'] ?></td>
                                             <td>
                                                 <?php if($row['status_bayar'] == '1'): ?>
                                                 <select class="status" data-order="<?=$row['no_order']?>" >
@@ -211,7 +215,7 @@ if(empty($_SESSION)){
                         <div class="col mb-5">
                             <h1 style="color: black;">Sudah Bayar</h1>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hovered">
+                                <table id="table-sudahbayar" class="table table-bordered table-striped table-hovered">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -241,7 +245,7 @@ if(empty($_SESSION)){
                                         }
 
                                         $no=1;
-                                            $queryGetGambar = "select p.*,b.nama_barang,b.harga,g.gambar,u.nama as pembeli from tbl_pemesanan p inner join tbl_barang b on p.id_barang = b.id_barang inner join tbl_gambar g on b.id_barang = g.id_barang inner join tbl_users u on p.id_users = u.id_users $whereStatus group by p.id_barang order by no_order asc ";
+                                            $queryGetGambar = "select p.*,b.nama_barang,b.harga,g.gambar,u.nama as pembeli from tbl_pemesanan p inner join tbl_barang b on p.id_barang = b.id_barang inner join tbl_gambar g on b.id_barang = g.id_barang inner join tbl_users u on p.id_users = u.id_users $whereStatus $whereSearch group by p.id_barang order by no_order asc ";
                                             // echo "<pre>";print_r($queryGetGambar);
                                             $result = mysqli_query($conn,$queryGetGambar);
                                             $arr = [];
@@ -310,7 +314,7 @@ if(empty($_SESSION)){
                         <div class="col mb-5">
                             <h1 style="color: black;">Dikirim</h1>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hovered">
+                                <table id="table-dikirim" class="table table-bordered table-striped table-hovered">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -340,7 +344,7 @@ if(empty($_SESSION)){
                                         }
 
                                         $no=1;
-                                            $queryGetGambar = "select p.*,b.nama_barang,b.harga,g.gambar,u.nama as pembeli from tbl_pemesanan p inner join tbl_barang b on p.id_barang = b.id_barang inner join tbl_gambar g on b.id_barang = g.id_barang inner join tbl_users u on p.id_users = u.id_users $whereStatus group by p.id_barang order by no_order asc ";
+                                            $queryGetGambar = "select p.*,b.nama_barang,b.harga,g.gambar,u.nama as pembeli from tbl_pemesanan p inner join tbl_barang b on p.id_barang = b.id_barang inner join tbl_gambar g on b.id_barang = g.id_barang inner join tbl_users u on p.id_users = u.id_users $whereStatus $whereSearch group by p.id_barang order by no_order asc ";
                                             // echo "<pre>";print_r($queryGetGambar);
                                             $result = mysqli_query($conn,$queryGetGambar);
                                             $arr = [];
@@ -409,7 +413,7 @@ if(empty($_SESSION)){
                         <div class="col mb-5">
                             <h1 style="color: black;">Diterima</h1>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hovered">
+                                <table id="table-diterima" class="table table-bordered table-striped table-hovered">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -439,7 +443,7 @@ if(empty($_SESSION)){
                                         }
 
                                         $no=1;
-                                            $queryGetGambar = "select p.*,b.nama_barang,b.harga,g.gambar,u.nama as pembeli from tbl_pemesanan p inner join tbl_barang b on p.id_barang = b.id_barang inner join tbl_gambar g on b.id_barang = g.id_barang inner join tbl_users u on p.id_users = u.id_users $whereStatus group by p.id_barang order by no_order asc ";
+                                            $queryGetGambar = "select p.*,b.nama_barang,b.harga,g.gambar,u.nama as pembeli from tbl_pemesanan p inner join tbl_barang b on p.id_barang = b.id_barang inner join tbl_gambar g on b.id_barang = g.id_barang inner join tbl_users u on p.id_users = u.id_users $whereStatus $whereSearch group by p.id_barang order by no_order asc ";
                                             // echo "<pre>";print_r($queryGetGambar);
                                             $result = mysqli_query($conn,$queryGetGambar);
                                             $arr = [];
@@ -521,7 +525,7 @@ if(empty($_SESSION)){
 
             <!-- Footer -->
             <?php 
-            include('../view/admin/layout/footer.php');
+            include('../../view/admin/layout/footer.php');
             // $this->load->view('layout/admin/footer'); ?>
             <!-- End of Footer -->
 
@@ -567,21 +571,21 @@ if(empty($_SESSION)){
     
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url('assets_admin/') ?>vendor/jquery/jquery.min.js"></script>
-    <script src="<?= base_url('assets_admin/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/jquery/jquery.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js" type="text/javascript"></script>
 
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="<?= base_url('assets_admin/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="<?= base_url('assets_admin/') ?>js/sb-admin-2.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>js/sb-admin-2.min.js"></script>
 
-    <script src="<?= base_url('assets_admin/') ?>vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?= base_url('assets_admin/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -590,7 +594,20 @@ if(empty($_SESSION)){
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $("table").DataTable({
+            $("#table-pending").DataTable({
+                paging: false,
+                scrollX: true
+            });
+
+            $("#table-sudahbayar").DataTable({
+                paging: false,
+            });
+
+            $("#table-dikirim").DataTable({
+                paging: false,
+            });
+
+            $("#table-diterima").DataTable({
                 paging: false,
             });
 

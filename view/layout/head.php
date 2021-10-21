@@ -8,15 +8,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="<?= $base_url ?>assets_customer/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="<?= $base_url ?>assets/assets_customer/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
-<link href="<?= $base_url ?>assets_customer/css/style.css" rel='stylesheet' type='text/css' />
+<link href="<?= $base_url ?>assets/assets_customer/css/style.css" rel='stylesheet' type='text/css' />
 <!-- js -->
-<script src="<?= $base_url ?>assets_customer/js/jquery-1.11.1.min.js"></script>
+<script src="<?= $base_url ?>assets/assets_customer/js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <!-- start-smoth-scrolling -->
-<script type="text/javascript" src="<?= $base_url ?>assets_customer/js/move-top.js"></script>
-<script type="text/javascript" src="<?= $base_url ?>assets_customer/js/easing.js"></script>
+<script type="text/javascript" src="<?= $base_url ?>assets/assets_customer/js/move-top.js"></script>
+<script type="text/javascript" src="<?= $base_url ?>assets/assets_customer/js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event){		
@@ -26,12 +26,12 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	});
 </script>
 <!-- start-smoth-scrolling -->
-<link href="<?= $base_url ?>assets_customer/css/font-awesome.css" rel="stylesheet"> 
+<link href="<?= $base_url ?>assets/assets_customer/css/font-awesome.css" rel="stylesheet"> 
 <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
 <!--- start-rate---->
-<script src="<?= $base_url ?>assets_customer/js/jstarbox.js"></script>
-	<link rel="stylesheet" href="<?= $base_url ?>assets_customer/css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
+<script src="<?= $base_url ?>assets/assets_customer/js/jstarbox.js"></script>
+	<link rel="stylesheet" href="<?= $base_url ?>assets/assets_customer/css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
 		<script type="text/javascript">
 			jQuery(function() {
 			jQuery('.starbox').each(function() {

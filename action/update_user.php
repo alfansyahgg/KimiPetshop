@@ -62,6 +62,6 @@ if(!empty($namaGambar)){
 header("Location: ".$baseURL);
 
 
-header("Location: ".$baseURL."admin/manage_user.php");
+header("Location: ".$baseURL."view/admin/manage_user.php");
 
 ?>

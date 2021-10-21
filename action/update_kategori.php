@@ -15,6 +15,6 @@ $query = "update tbl_kategori set nama_kategori='$namaKategori' where id_kategor
 $exec = mysqli_query($conn,$query);
 
 
-header("Location: ".$baseURL."admin/manage_kategori.php");
+header("Location: ".$baseURL."view/admin/manage_kategori.php");
 
 ?>

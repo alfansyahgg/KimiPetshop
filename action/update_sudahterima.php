@@ -18,6 +18,6 @@ if($exec){
 }
 
 echo json_encode($data);
-// header("Location: ".$baseURL."admin/manage_kategori.php");
+// header("Location: ".$baseURL."view/admin/manage_kategori.php");
 
 ?>

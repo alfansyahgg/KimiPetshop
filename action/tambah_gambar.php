@@ -37,7 +37,7 @@ for( $i=0 ; $i < $total ; $i++ ) {
     }
 }
 
-header("Location: ".$baseURL."admin/manage_barang.php");
+header("Location: ".$baseURL."view/admin/manage_gambar.php");
 
 
 ?>

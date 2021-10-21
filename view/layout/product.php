@@ -10,7 +10,7 @@ while($row = mysqli_fetch_array($result)){
 		</a>
 		<div class="mid-1">
 			<div class="women">
-				<h6><a href="<?= $baseURL."customer/detail_products.php?id=".$row['id_barang'] ?>"><?= ucwords(strtolower($row['nama_barang'])); ?></a></h6>							
+				<h6><a href="<?= $baseURL."view/customer/detail_products.php?id=".$row['id_barang'] ?>"><?= ucwords(strtolower($row['nama_barang'])); ?></a></h6>							
 			</div>
 			<div class="mid-2">
 				<p ><em class="item_price">Rp. <?= number_format($row['harga'],0,0,'.') ?></em></p>

@@ -52,7 +52,7 @@ for( $i=0 ; $i < $total ; $i++ ) {
 }
 //end for
 
-header("Location: ".$baseURL."admin/manage_barang.php");
+header("Location: ".$baseURL."view/admin/manage_barang.php");
 
 
 ?>

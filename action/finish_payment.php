@@ -1,7 +1,7 @@
 <?php
 
 include('connect.php');
-
+session_start();
 if(empty($_POST)){
 	return;
 }
@@ -40,7 +40,7 @@ $queryInsert = "insert into tbl_transaksi(no_order,transaction_id,gross_amount,p
   $exec = mysqli_query($conn,$queryInsert) or die(mysqli_error($conn));
 
 if($exec){
-	header("Location: ".$baseURL);
+	header("Location: ".$baseURL."view/customer/pesanan.php?u=".openssl_encrypt($_SESSION['id_user'], "AES-128-CTR", "gg",0,'1234567891011121'));
 }else{
 	echo "error";
 }

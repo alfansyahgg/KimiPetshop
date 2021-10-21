@@ -1,9 +1,9 @@
 <?php 
 
 session_start();
-include('../action/connect.php');
+include('../../action/connect.php');
 
-$base_url = 'http://localhost/olshop_petshop/';
+$base_url = 'http://localhost/kimi-petshop/';
 
 $code = $_GET['u'];
 
@@ -14,7 +14,7 @@ $id_users = openssl_decrypt($code,"AES-128-CTR","gg",0,$decryption_iv);
 if($id_users != $_SESSION['id_user']){
   echo "prohibited";exit();
 }
-require_once('./../plugins/Midtrans.php');
+require_once('../../plugins/Midtrans.php');
 // require_once dirname(__FILE__) . './../plugins/Midtrans.php';
 
 
@@ -25,7 +25,7 @@ require_once('./../plugins/Midtrans.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<?php include('../view/layout/head.php'); ?>
+	<?php include('../../view/layout/head.php'); ?>
 
 <style type="text/css">
   table tbody td{
@@ -42,7 +42,7 @@ require_once('./../plugins/Midtrans.php');
 </head>
 <body>
 <div class="header">
-	<?php include('../view/layout/header.php'); ?>				
+	<?php include('../../view/layout/header.php'); ?>				
 </div>
   <!---->
 
@@ -77,7 +77,9 @@ require_once('./../plugins/Midtrans.php');
                 <div class="col-md">
 
                 <?php
-                  $queryNoOrder = "select p.id_pemesanan,p.no_order,p.status_bayar,p.tanggal_pemesanan,p.alamat_pengiriman from tbl_pemesanan p where p.id_users = $id_users and p.status_bayar = '0' group by p.no_order ";
+                  $queryNoOrder = "select p.id_pemesanan,p.no_order,p.status_bayar,p.tanggal_pemesanan,p.alamat_pengiriman,p.penerima,p.no_hp_penerima,p.kota_penerima,
+COALESCE(t.payment_type,'') as payment_type,COALESCE(t.transaction_status,'') as transaction_status,COALESCE(t.batas_bayar,'') as batas_bayar,COALESCE(t.bank,'') as bank,COALESCE(t.va_number,0) as va_number,COALESCE(t.pdf_url,'') as pdf_url,COALESCE(t.payment_code,'') as payment_code,COALESCE(t.status,0) as status,COALESCE(t.bca_va_number,0) as bca_va_number,COALESCE(t.permata_va_number,0) as permata_va_number,COALESCE(t.bill_key,0) as bill_key,COALESCE(t.biller_code,0) as biller_code
+ from tbl_pemesanan p left join tbl_transaksi t on p.no_order = t.no_order where p.id_users = $id_users and p.status_bayar = '0' group by p.no_order order by p.id_pemesanan desc ";
                   $execOrder = mysqli_query($conn,$queryNoOrder);
 
                   while($val = mysqli_fetch_array($execOrder)){
@@ -85,6 +87,7 @@ require_once('./../plugins/Midtrans.php');
                 <div style="padding: 50px 20px;border: 1px solid black;margin-bottom: 50px;">
                   <div style="margin-top: 10px;margin-bottom: 10px;"><h1>Nomor Order : #<?= $val['no_order'] ?></h1></div>
                   <div class="table-responsive">
+                    <a onclick="return confirm('Hapus?')"  href="<?= $baseURL."action/delete_noorder.php?no=".$val['no_order'] ?>" style="float: right;margin-bottom: 20px" href="" class="btn btn-danger btn-hapusorder"><i class="fa fa-times">&nbsp;</i>Hapus Order</a>
                     <table class="table table-bordered table-striped">
                       <thead>
                         <tr>
@@ -121,7 +124,7 @@ require_once('./../plugins/Midtrans.php');
                           <td><?= number_format($row['harga'],0,0,'.') ?></td>
                           <td><?=  number_format($row['jml_barang']*$row['harga'],0,0,'.') ?></td>
                           <td>
-                            <a onclick="return confirm('Hapus?  ')"  href="<?= $baseURL."action/delete_pesanan.php?p=".$row['id_pemesanan'] ?>" class="btn btn-danger">Hapus</a>
+                            <a onclick="return confirm('Hapus?  ')"  href="<?= $baseURL."action/delete_pesanan.php?p=".$row['id_pemesanan'] ?>" class="btn btn-danger"><i class="fa fa-times"></i></a>
                           </td>
                         </tr>
                         <?php } } ?>
@@ -134,9 +137,125 @@ require_once('./../plugins/Midtrans.php');
                     </table>
 
                   </div>
+
+                  <?php if(!empty($val['transaction_status'])): ?>
+                  <div class="table-responsive mt-5 mb-5">
+                    <table class="table table-bordered table-striped">
+                      <tr>
+                        <td colspan="3" style="border-bottom: 3px solid gray;text-align: left;font-weight: bold;">Informasi Penerima</td>
+                      </tr>
+                      <tr>
+                        <td>Penerima</td>
+                        <td  class="text-center" style="width: 2%"> : </td>
+                        <td>
+                          <?= ucwords(str_replace(array('[',']'), '',$val['penerima'])) ?>
+                        </td>
+                      </tr>
+                      <tr>
+
+                      <tr>
+                        <td>Nomor HP Penerima</td>
+                        <td  class="text-center" style="width: 2%"> : </td>
+                        <td>
+                          <?= ucwords(str_replace(array('[',']'), '',$val['no_hp_penerima'])) ?>
+                        </td>
+                      </tr>
+                      <tr>
+
+                      <tr>
+                        <td>Alamat Penerima</td>
+                        <td  class="text-center" style="width: 2%"> : </td>
+                        <td>
+                          <?= ucwords($val['alamat_pengiriman']."<br>".$val['kota_penerima']  ) ?>
+                        </td>
+                      </tr>
+                      <tr>
+
+                      <tr>
+                        <td colspan="3" style="border-bottom: 3px solid gray;text-align: left;font-weight: bold;">Informasi Pembayaran</td>
+                      </tr>
+
+                      <tr>
+                        <td>Jenis Pembayaran</td>
+                        <td  class="text-center" style="width: 2%"> : </td>
+                        <td>
+                          <?= ucwords(str_replace(array('_','-'), ' ',$val['payment_type'])) ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Status</td>
+                        <td class="text-center"> : </td>
+                        <td>Pending</td>
+                      </tr>
+                      <?php if(!empty($val['bank'])): ?>
+                        <tr>
+                          <td>Bank</td>
+                          <td class="text-center"> : </td>
+                          <td><?= $val['bank'] ?></td>
+                        </tr>
+                      <?php endif; ?>
+
+                      <?php if(!empty($val['va_number'])): ?>
+                        <tr>
+                          <td>VA Number</td>
+                          <td class="text-center"> : </td>
+                          <td><?= $val['va_number'] ?></td>
+                        </tr>
+                      <?php endif; ?>
+
+                      <?php if(!empty($val['bca_va_number'])): ?>
+                        <tr>
+                          <td>BCA VA Number</td>
+                          <td class="text-center"> : </td>
+                          <td><?= $val['bca_va_number'] ?></td>
+                        </tr>
+                      <?php endif; ?>
+
+                      <?php if(!empty($val['permata_va_number'])): ?>
+                        <tr>
+                          <td>Permata VA Number</td>
+                          <td class="text-center"> : </td>
+                          <td><?= $val['permata_va_number'] ?></td>
+                        </tr>
+                      <?php endif; ?>
+
+                      <?php if(!empty($val['bill_key'])): ?>
+                        <tr>
+                          <td>Bill Key</td>
+                          <td class="text-center"> : </td>
+                          <td><?= $val['bill_key'] ?></td>
+                        </tr>
+                      <?php endif; ?>
+
+                      <?php if(!empty($val['biller_code'])): ?>
+                        <tr>
+                          <td>Biller Code</td>
+                          <td class="text-center"> : </td>
+                          <td><?= $val['biller_code'] ?></td>
+                        </tr>
+                      <?php endif; ?>
+
+                      <?php if(!empty($val['payment_code'])): ?>
+                        <tr>
+                          <td>Payment Code</td>
+                          <td class="text-center"> : </td>
+                          <td><?= $val['payment_code'] ?></td>
+                        </tr>
+                      <?php endif; ?>
+
+
+                      <tr>
+                        <td>Panduan Pembayaran</td>
+                        <td class="text-center"> : </td>
+                        <td><a href="<?= $val['pdf_url'] ?>" class="btn btn-danger"><i class="fa fa-file-pdf-o">&nbsp;</i>Download</a></td>
+                      </tr>
+                    </table>
+                  </div>
+                  <?php  endif;?>
                   <span>
-                    <a onclick="return confirm('Hapus?')"  href="<?= $baseURL."action/delete_noorder.php?no=".$val['no_order'] ?>" style="float: left;" href="" class="btn btn-danger btn-hapusorder"><i class="fa fa-times">&nbsp;</i>Hapus Order</a>
+                    <?php if(empty($val['transaction_status'])): ?>
                     <a style="float: right;width: 15%;" data-id="<?=$val['no_order']?>" class="btn btn-success btn-bayarorder"><i class="fa fa-money">&nbsp;</i>Bayar</a>
+                    <?php endif; ?>
                   </span>
                 </div>
 
@@ -425,7 +544,7 @@ require_once('./../plugins/Midtrans.php');
 
 <!--footer-->
 <div class="footer">
-	<?php include('../view/layout/footer.php'); ?>				
+	<?php include('../../view/layout/footer.php'); ?>				
 </div>
 <!-- //footer-->
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
@@ -508,9 +627,9 @@ require_once('./../plugins/Midtrans.php');
 	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- //smooth scrolling -->
 <!-- for bootstrap working -->
-		<script src="<?=$baseURL?>assets_customer/js/bootstrap.js"></script>
+		<script src="<?=$baseURL?>assets/assets_customer/js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
-<script type='text/javascript' src="<?=$baseURL?>assets_customer/js/jquery.mycart.js"></script>
+<script type='text/javascript' src="<?=$baseURL?>assets/assets_customer/js/jquery.mycart.js"></script>
 
 
  

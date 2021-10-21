@@ -22,7 +22,7 @@ $query = "update tbl_barang set nama_barang='$namaBarang',harga=$hargaBarang,sto
 $execute = mysqli_query($conn,$query);
 
 if($execute){
-    header("Location: ".$baseURL."admin/manage_barang.php");
+    header("Location: ".$baseURL."view/admin/manage_barang.php");
 }else{
     echo "error";
 }

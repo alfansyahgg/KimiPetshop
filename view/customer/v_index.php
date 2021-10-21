@@ -47,7 +47,7 @@
 									</a>
 									<div class="mid-1">
 										<div class="women">
-											<h6><a href="<?= $baseURL."customer/detail_products.php?id=".$data['id_barang'] ?>"><?= ucwords(strtolower($data['nama_barang'])); ?></a></h6>							
+											<h6><a href="<?= $baseURL."view/customer/detail_products.php?id=".$data['id_barang'] ?>"><?= ucwords(strtolower($data['nama_barang'])); ?></a></h6>							
 										</div>
 										<div class="mid-2" style="flex-grow: 1;">
 											<p ><em class="item_price">Rp. <?=number_format($data['harga'],0,0,'.') ?></em></p>

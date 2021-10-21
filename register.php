@@ -2,7 +2,7 @@
 
 session_start();
 
-$base_url = 'http://localhost/olshop_petshop/';
+$base_url = 'http://localhost/kimi-petshop/';
 
 if(!empty($_SESSION)){
   if($_SESSION['is_login']){

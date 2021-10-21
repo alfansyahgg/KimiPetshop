@@ -2,7 +2,7 @@
 
 session_start();
 
-$base_url = 'http://localhost/olshop_petshop/';
+$base_url = 'http://localhost/kimi-petshop/';
 
 if(!empty($_SESSION)){
   if($_SESSION['is_login']){
@@ -62,8 +62,8 @@ if(!empty($_SESSION)){
 			</div>
 	</div>
 
-    <script>window.jQuery || document.write('<script src="<?= $base_url ?>assets_customer/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
-    <script src="<?= $base_url ?>assets_customer/js/jquery.vide.min.js"></script>
+    <script>window.jQuery || document.write('<script src="<?= $base_url ?>assets/assets_customer/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+    <script src="<?= $base_url ?>assets/assets_customer/js/jquery.vide.min.js"></script>
 
 <!--content-->
 <!-- <div class="content-top ">
@@ -100,9 +100,9 @@ if(!empty($_SESSION)){
 	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- //smooth scrolling -->
 <!-- for bootstrap working -->
-		<script src="<?= $base_url ?>assets_customer/js/bootstrap.js"></script>
+		<script src="<?= $base_url ?>assets/assets_customer/js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
-<script type='text/javascript' src="<?= $base_url ?>assets_customer/js/jquery.mycart.js"></script>
+<script type='text/javascript' src="<?= $base_url ?>assets/assets_customer/js/jquery.mycart.js"></script>
   <script type="text/javascript">
   $(function () {
 
@@ -170,9 +170,9 @@ if(!empty($_SESSION)){
 	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- //smooth scrolling -->
 <!-- for bootstrap working -->
-		<!-- <script src="<?= $base_url ?>assets_customer/js/bootstrap.js"></script> -->
+		<!-- <script src="<?= $base_url ?>assets/assets_customer/js/bootstrap.js"></script> -->
 <!-- //for bootstrap working -->
-<script type='text/javascript' src="<?= $base_url ?>assets_customer/js/jquery.mycart.js"></script>
+<script type='text/javascript' src="<?= $base_url ?>assets/assets_customer/js/jquery.mycart.js"></script>
   <script type="text/javascript">
   $(function () {
 

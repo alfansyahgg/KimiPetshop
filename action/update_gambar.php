@@ -37,6 +37,6 @@ $tmpFilePath = $_FILES['gambar']['tmp_name'];
     }
   }
 
-header("Location: ".$baseURL."admin/manage_gambar.php");
+header("Location: ".$baseURL."view/admin/manage_gambar.php");
 
 ?>

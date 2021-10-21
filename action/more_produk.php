@@ -22,14 +22,14 @@ foreach($arr as $key => $val){
 
     $more .= '<div class="mid-1">';
     $more .= '<div class="women">';
-    $more .= '<h6><a href="'.$baseURL.'customer/detail_products.php?id='.$val["id_barang"].'">'.ucwords(strtolower($val['nama_barang'])).'</a></h6>';
+    $more .= '<h6><a href="'.$baseURL.'view/customer/detail_products.php?id='.$val["id_barang"].'">'.ucwords(strtolower($val['nama_barang'])).'</a></h6>';
     $more .= '</div>';
     $more .= '<div class="mid-2"><p ><em class="item_price">Rp.'.number_format($val['harga'],0,0,'.').'</em></p><div class="clearfix"></div></div>';
     $more .= '<div class="add add-2">';
     $more .= '<button class="btn btn-danger my-cart-btn my-cart-b" data-id="'.$val["id_barang"].'"data-name="'.$val["nama_barang"].'" data-summary="'.$val["deskripsi"].'" data-price="'.$val["harga"].'" data-quantity="1" data-image="'.$baseURL.'uploads/'.$val["gambar"].'" >Add to Cart</button>';
     $more .= '</div></div></div></div>';
 }
-    $more .= '<script src="'.$baseURL.'assets_customer/js/buttoncart.js'.'" ></script>';
+    $more .= '<script src="'.$baseURL.'assets/assets_customer/js/buttoncart.js'.'" ></script>';
 echo $more;
 
 

@@ -1,9 +1,9 @@
 <?php 
 
 session_start();
-include('../action/connect.php');
+include('../../action/connect.php');
 
-$base_url = 'http://localhost/olshop_petshop/';
+$base_url = 'http://localhost/kimi-petshop/';
 
 $code = $_GET['u'];
 
@@ -22,12 +22,12 @@ if($id_users != $_SESSION['id_user']){
 <!DOCTYPE html>
 <html>
 <head>
-	<?php include('../view/layout/head.php'); ?>
+	<?php include('../../view/layout/head.php'); ?>
 
 </head>
 <body>
 <div class="header">
-	<?php include('../view/layout/header.php'); ?>				
+	<?php include('../../view/layout/header.php'); ?>				
 </div>
   <!---->
 
@@ -136,7 +136,7 @@ if($id_users != $_SESSION['id_user']){
 
 <!--footer-->
 <div class="footer">
-	<?php include('../view/layout/footer.php'); ?>				
+	<?php include('../../view/layout/footer.php'); ?>				
 </div>
 <!-- //footer-->
 
@@ -168,9 +168,9 @@ if($id_users != $_SESSION['id_user']){
 	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- //smooth scrolling -->
 <!-- for bootstrap working -->
-		<script src="<?=$baseURL?>assets_customer/js/bootstrap.js"></script>
+		<script src="<?=$baseURL?>assets/assets_customer/js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
-<script type='text/javascript' src="<?=$baseURL?>assets_customer/js/jquery.mycart.js"></script>
+<script type='text/javascript' src="<?=$baseURL?>assets/assets_customer/js/jquery.mycart.js"></script>
   <script type="text/javascript">
   $(function () {
 

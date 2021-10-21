@@ -1,12 +1,12 @@
 <?php
 
 session_start();
-include '../action/connect.php';
+include '../../action/connect.php';
 
 
 function base_url($link){
     $link = empty($link) ? "" : $link;
-    return "http://localhost/olshop_petshop/".$link;
+    return "http://localhost/kimi-petshop/".$link;
 }
 
 
@@ -33,14 +33,14 @@ if(empty($_SESSION)){
 	<title>Admin Dashboard</title>
 
 	<!-- Custom fonts for this template-->
-    <link href="<?= base_url('assets_admin/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url('assets/assets_admin/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="<?= base_url('assets_admin/') ?>css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets_admin/vendor/datatables/dataTables.bootstrap4.min.css') ?>">
+    <link href="<?= base_url('assets/assets_admin/') ?>css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/assets_admin/vendor/datatables/dataTables.bootstrap4.min.css') ?>">
     <style type="text/css">
     th, td { white-space: nowrap; }
     </style>
@@ -53,7 +53,7 @@ if(empty($_SESSION)){
 
         <!-- Sidebar -->
         <?php 
-        include('../view/admin/layout/sidebar.php');
+        include('../../view/admin/layout/sidebar.php');
         // $this->load->view('layout/admin/sidebar'); ?>
         <!-- End of Sidebar -->
 
@@ -65,7 +65,7 @@ if(empty($_SESSION)){
 
                 <!-- Topbar -->
                 <?php 
-                include('../view/admin/layout/topbar.php');
+                include('../../view/admin/layout/topbar.php');
                 // $this->load->view('layout/admin/topbar'); ?>
                 <!-- End of Topbar -->
 
@@ -142,7 +142,7 @@ if(empty($_SESSION)){
 
             <!-- Footer -->
             <?php 
-            include('../view/admin/layout/footer.php');
+            include('../../view/admin/layout/footer.php');
             // $this->load->view('layout/admin/footer'); ?>
             <!-- End of Footer -->
 
@@ -275,22 +275,22 @@ if(empty($_SESSION)){
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url('assets_admin/') ?>vendor/jquery/jquery.min.js"></script>
-    <script src="<?= base_url('assets_admin/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/jquery/jquery.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="<?= base_url('assets_admin/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="<?= base_url('assets_admin/') ?>js/sb-admin-2.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>js/sb-admin-2.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
             
         })
     </script>
-    <script src="<?= base_url('assets_admin/') ?>vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?= base_url('assets_admin/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){

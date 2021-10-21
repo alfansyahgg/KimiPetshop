@@ -9,15 +9,15 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <a href="javascript:void(0)"><img style="margin: 0 auto;" class="first-slide" src="<?= $baseURL ?>assets_customer/images/ps1.jpg" alt="First slide"></a>
+          <a href="javascript:void(0)"><img style="margin: 0 auto;" class="first-slide" src="<?= $baseURL ?>assets/assets_customer/images/ps1.jpg" alt="First slide"></a>
        
         </div>
         <div class="item">
-          <a href="javascript:void(0)"><img style="margin: 0 auto;" class="second-slide " src="<?= $baseURL ?>assets_customer/images/ps2.jpg" alt="Second slide"></a>
+          <a href="javascript:void(0)"><img style="margin: 0 auto;" class="second-slide " src="<?= $baseURL ?>assets/assets_customer/images/ps2.jpg" alt="Second slide"></a>
          
         </div>
         <div class="item">
-          <a href="javascript:void(0)"><img style="margin: 0 auto;" class="third-slide " src="<?= $baseURL ?>assets_customer/images/ps3.jpg" alt="Third slide"></a>
+          <a href="javascript:void(0)"><img style="margin: 0 auto;" class="third-slide " src="<?= $baseURL ?>assets/assets_customer/images/ps3.jpg" alt="Third slide"></a>
           
         </div>
       </div>

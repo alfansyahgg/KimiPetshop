@@ -6,13 +6,14 @@
 			<div class="head-t">
 				<?php if(!empty($_SESSION) && $_SESSION['is_login']){ ?>
 				<ul class="card">
-					<li><a href="javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i><?= $_SESSION['username'] ?></a></li>
 						<?php if($_SESSION['hak_akses'] == '1'){ ?>
+							
+						<li><a href="javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i><?= $_SESSION['username'] ?></a></li>
 							<li><a href="dashboard.php"><i class="fa fa-gear" aria-hidden="true"></i>Admin Page</a></li>
 						<?php }else{ ?>
-							<li><a href="<?= $baseURL."customer/profil.php?u=".openssl_encrypt($_SESSION['id_user'], "AES-128-CTR", "gg",0,'1234567891011121') ?>"><i class="fa fa-gear" aria-hidden="true"></i>Profile Page</a></li>
+							<li><a href="<?= $baseURL."view/customer/profil.php?u=".openssl_encrypt($_SESSION['id_user'], "AES-128-CTR", "gg",0,'1234567891011121') ?>"><i class="fa fa-gear" aria-hidden="true"></i><?= $_SESSION['username'] ?></a></li>
 
-							<li><a href="<?= $baseURL."customer/pesanan.php?u=".openssl_encrypt($_SESSION['id_user'], "AES-128-CTR", "gg",0,'1234567891011121') ?>"><i class="fa fa-cart-plus" aria-hidden="true"></i>Pesanan Saya</a></li>
+							<li><a href="<?= $baseURL."view/customer/pesanan.php?u=".openssl_encrypt($_SESSION['id_user'], "AES-128-CTR", "gg",0,'1234567891011121') ?>"><i class="fa fa-cart-plus" aria-hidden="true"></i>Keranjang Saya</a></li>
 
 
 						<?php } ?>
@@ -66,7 +67,7 @@
 										<div class="col-sm-3"></div>
 										
 										<div class="col-sm-3 w3l">
-											<a href="kitchen.html"><img src="<?= $base_url ?>assets_customer/images/me.png" class="img-responsive" alt=""></a>
+											<a href="kitchen.html"><img src="<?= $base_url ?>assets/assets_customer/images/me.png" class="img-responsive" alt=""></a>
 										</div>
 										<div class="clearfix"></div>
 									</div>	

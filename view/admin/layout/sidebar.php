@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin/') ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('dashboard.php') ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -43,37 +43,37 @@
             </li> -->
 
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('admin/manage_barang.php') ?>">
+                <a class="nav-link" href="<?= base_url('view/admin/manage_barang.php') ?>">
                     <i class="fas fa-fw fa-cart-plus"></i>
                     <span>Manage Barang</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('admin/manage_gambar.php') ?>">
+                <a class="nav-link" href="<?= base_url('view/admin/manage_gambar.php') ?>">
                     <i class="fas fa-fw fa-image"></i>
                     <span>Manage Gambar</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('admin/manage_kategori.php') ?>">
+                <a class="nav-link" href="<?= base_url('view/admin/manage_kategori.php') ?>">
                     <i class="fas fa-fw fa-info"></i>
                     <span>Manage Kategori</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('admin/manage_pesanan.php') ?>">
+                <a class="nav-link" href="<?= base_url('view/admin/manage_pesanan.php') ?>">
                     <i class="fas fa-fw fa-book"></i>
                     <span>Manage Pesanan</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('admin/manage_user.php') ?>">
+                <a class="nav-link" href="<?= base_url('view/admin/manage_user.php') ?>">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Manage Users</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('admin/manage_web.php') ?>">
+                <a class="nav-link" href="<?= base_url('view/admin/manage_web.php') ?>">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Manage Website</span></a>
             </li>

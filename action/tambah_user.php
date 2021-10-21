@@ -47,7 +47,7 @@ if(in_array($extension,$allowedExts) && $tmpFilePath != "" && $fileSize < 500000
 }
 
 
-header("Location: ".$baseURL."admin/manage_user.php");
+header("Location: ".$baseURL."view/admin/manage_user.php");
 
 
 ?>

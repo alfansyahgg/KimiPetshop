@@ -20,6 +20,6 @@ $query = "update tbl_setting set deskripsi='$deskripsi',alamat='$alamat',faceboo
 $exec = mysqli_query($conn,$query);
 
 
-header("Location: ".$baseURL."admin/manage_web.php");
+header("Location: ".$baseURL."view/admin/manage_web.php");
 
 ?>

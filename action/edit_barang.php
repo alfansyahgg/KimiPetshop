@@ -1,13 +1,13 @@
 <?php
 
 session_start();
-include '../action/connect.php';
+include 'connect.php';
 // session_destroy();
 
 // echo "<pre>";print_r($_SESSION);exit();
 function base_url($link){
     $link = empty($link) ? "" : $link;
-    return "http://localhost/olshop_petshop/".$link;
+    return "http://localhost/kimi-petshop/".$link;
 }
 
 
@@ -37,13 +37,13 @@ $result = mysqli_query($conn,$queryGetBarangById);
 	<title>Admin Dashboard</title>
 
 	<!-- Custom fonts for this template-->
-    <link href="<?= base_url('assets_admin/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url('assets/assets_admin/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="<?= base_url('assets_admin/') ?>css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/assets_admin/') ?>css/sb-admin-2.min.css" rel="stylesheet">
 
     <style type="text/css">
         .rowGmbr{
@@ -172,14 +172,14 @@ $result = mysqli_query($conn,$queryGetBarangById);
     
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url('assets_admin/') ?>vendor/jquery/jquery.min.js"></script>
-    <script src="<?= base_url('assets_admin/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/jquery/jquery.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="<?= base_url('assets_admin/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="<?= base_url('assets_admin/') ?>js/sb-admin-2.min.js"></script>
+    <script src="<?= base_url('assets/assets_admin/') ?>js/sb-admin-2.min.js"></script>
 
 </body>
 </html>

@@ -13,7 +13,7 @@ $query = "insert into tbl_kategori(nama_kategori) values('$namaKategori') ";
 $exec = mysqli_query($conn,$query);
 
 if($exec){
-    header("Location: ".$baseURL."admin/manage_kategori.php");
+    header("Location: ".$baseURL."view/admin/manage_kategori.php");
 }else{
     echo "failed";
 }

@@ -11,7 +11,7 @@ require_once dirname(__FILE__) . './../plugins/Midtrans.php';
 // Set sanitization on (default)
 \Midtrans\Config::$isSanitized = true;
 // Set 3DS transaction for credit card to true
-\Midtrans\Config::$is3ds = true;
+\Midtrans\Config::$is3ds = false;
 
 
 $order = $_POST['no_order'];
@@ -47,6 +47,12 @@ while($row = mysqli_fetch_assoc($hasil)){
 	$email = $row['email'];
 	$no_hp = $row['no_hp'];
 	$nama_belakang = $row['nama_belakang'];
+
+	$alamatPenerima = $row['alamat_pengiriman'];
+	$no_hp_penerima = $row['no_hp_penerima'];
+	$penerima = $row['penerima'];
+	$kotaPenerima = $row['kota_penerima'];
+	$kode_pos_penerima = $row['kode_post_penerima'];
 }
 
 // foreach($arr as $key => $val){
@@ -97,12 +103,12 @@ $billing_address = array(
 'country_code' => 'IDN'
 );
 $shipping_address = array(
-'first_name' => $nama,
-'last_name' => $nama_belakang,
-'address' => $alamat,
-'city' => $kota,
-'postal_code' => $kode_pos,
-'phone' => $no_hp,
+'first_name' => $penerima,
+'last_name' => '',
+'address' => $alamatPenerima,
+'city' => $kotaPenerima,
+'postal_code' => $kode_pos_penerima,
+'phone' => $no_hp_penerima,
 'country_code' => 'IDN'
 );
 $customer_details = array(
